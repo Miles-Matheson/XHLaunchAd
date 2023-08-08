@@ -15,11 +15,11 @@
 #define XH_ScreenW    [UIScreen mainScreen].bounds.size.width
 #define XH_ScreenH    [UIScreen mainScreen].bounds.size.height
 
-#define XH_IPHONEX  ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
-#define XH_IPHONEXR    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(828, 1792), [[UIScreen mainScreen] currentMode].size) : NO)
-#define XH_IPHONEXSMAX    ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2688), [[UIScreen mainScreen] currentMode].size) : NO)
-#define XH_FULLSCREEN ((XH_IPHONEX || XH_IPHONEXR || XH_IPHONEXSMAX) ? YES : NO)
+#define XH_FULLSCREEN [XHLaunchAdConst iPhoneX]
 
+#define XH_KEYWINDOW [XHLaunchAdConst getKeyWindow]
+
+#define XH_SAFEAREAINSETS XH_KEYWINDOW.safeAreaInsets
 
 #define XHISURLString(string)  ([string hasPrefix:@"https://"] || [string hasPrefix:@"http://"]) ? YES:NO
 #define XHStringContainsSubString(string,subString)  ([string rangeOfString:subString].location == NSNotFound) ? NO:YES
@@ -84,4 +84,10 @@ UIKIT_EXTERN NSString *const XHLaunchAdVideoPlayFailedNotification;
 UIKIT_EXTERN BOOL XHLaunchAdPrefersHomeIndicatorAutoHidden;
 
 
+@interface XHLaunchAdConst : NSObject
 
+
++(UIWindow *)getKeyWindow;
++(BOOL)iPhoneX;
+
+@end
